@@ -8,6 +8,7 @@ import pytesseract
 from print_pokemon_data import get_pokemon_data
 import pandas as pd
 import ast
+import json
 import numpy as np
 def check_for_battle(bot : PIL.Image.Image, test_screen : PIL.Image.Image):
     bot, test_screen = make_images_same_size(test_screen, bot)
@@ -38,7 +39,18 @@ def print_evolution_order(df_current_pokemon):
 
 
     return return_string
+
+def print_moves(pokemon : str, moves : dict):
+    print("\nMoves")
+    pokemon = pokemon[0] + pokemon[1:].lower()
+    for x in moves[pokemon.strip()]:
+        print(f"Lvl. {x[0]}: {x[1]}")
+
+
 def main():
+    with open("pokemon_moves.json") as filehandle:
+        moves = json.load(filehandle)
+
     calibrated = False
     print_order = ["Name", "Type 1", "Type 2", "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed", "Total"]
     global df_pokemon
@@ -88,7 +100,7 @@ def main():
                         print("\n---------------------------------------------\n")
                         for element in print_order:
                             print(f"{element}: {df_current_pokemon.loc[element]}")
-
+                        print_moves(pokemon_name, moves)
                     # print(print_evolution_order(df_current_pokemon))
 
 
