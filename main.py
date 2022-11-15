@@ -41,8 +41,9 @@ def print_evolution_order(df_current_pokemon):
 
     return return_string
 
-def print_moves(pokemon : str, moves : dict):
+def print_moves(pokemon : str, moves : dict, df_pokemon : pd.DataFrame):
     print("\nMoves:")
+    all_pokemon = df_pokemon["Name"].tolist()[:-1]
     pokemon = pokemon[0] + pokemon[1:].lower()
     pokemon = difflib.get_close_matches(pokemon, all_pokemon, 1, 0.4)[0]
     for x in moves[pokemon.strip()]:
@@ -102,7 +103,7 @@ def main():
                         print("\n---------------------------------------------\n")
                         for element in print_order:
                             print(f"{element}: {df_current_pokemon.loc[element]}")
-                        print_moves(pokemon_name, moves)
+                        print_moves(pokemon_name, moves, df_pokemon)
                     # print(print_evolution_order(df_current_pokemon))
 
 
