@@ -59,6 +59,7 @@ def main():
     box_coords = find_name_box(top_screen)
     calibrated = True
     pokemon_name = "pickacu"
+    print("Calibration done")
     while calibrated:
         time.sleep(2)
         screen = screenshot(name_desmume)
