@@ -50,11 +50,37 @@ def print_moves(pokemon : str, moves : dict, df_pokemon : pd.DataFrame):
     for x in moves[pokemon.strip()]:
         print(f"Lvl. {x[0]}: {x[1]}")
 
+def print_typing(df_current_pokemon : pd.DataFrame, df_typing : pd.DataFrame):
+    type1 = df_current_pokemon.loc['Type 1']
+    type2 = df_current_pokemon.loc['Type 2']
+    type_combinations = {}
+    for i in df_typing.index:
+        type_combinations[i] = float(df_typing.loc[type1])
+        if type2:
+            type_combinations[i] = type_combinations[i] * float(df_typing.loc[type2])
+    string_weak = "2x damaged by:"
+    string_resist = "1/2 damage: "
+    string_immune = "Immune: "
+    string_double_resist = "1/4x damaged by: "
+    string_double_weak = "4x damaged by: "
+    for key in type_combinations.keys():
+        if type_combinations[key] = 0:
+            string_immune += key + ", "
+        if type_combinations[key] = 2:
+            string_weak += key + ", "
+        if type_combinations[key] = 4:
+            string_double_weak += key + ", "
+        if type_combinations[key] = 0.25:
+            string_double_resist += key + ", "
+        if type_combinations[key] = 0.5:
+            string_resist += key + ", "
+    print(string_)
+
 
 def main():
     with open("pokemon_moves.json") as filehandle:
         moves = json.load(filehandle)
-
+    df_typing = pd.read_csv("typing.csv", index_col=0)
     calibrated = False
     print_order = ["Name", "Type 1", "Type 2", "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed", "Total"]
     global df_pokemon
@@ -107,6 +133,7 @@ def main():
                         print("\n---------------------------------------------\n")
                         for element in print_order:
                             print(f"{element}: {df_current_pokemon.loc[element]}")
+                        #print_typing(df_current_pokemon, df_typing)
                         print_moves(pokemon_name, moves, df_pokemon)
                     # print(print_evolution_order(df_current_pokemon))
 
