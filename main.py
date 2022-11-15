@@ -78,7 +78,7 @@ def main():
             if pytesseract.image_to_string(box_image) != pokemon_name:
                 pokemon_name = pytesseract.image_to_string(box_image)
                 df_current_pokemon = get_pokemon_data(pokemon_name, df_pokemon)
-                if df_current_pokemon:
+                if df_current_pokemon is not None:
                     print("\n---------------------------------------------\n")
                     for element in print_order:
                         print(f"{element}: {df_current_pokemon.loc[element]}")
