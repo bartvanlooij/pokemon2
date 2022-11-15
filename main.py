@@ -61,7 +61,6 @@ def main():
     pokemon_name = "pickacu"
     print("Calibration done")
     while calibrated:
-        time.sleep(2)
         screen = screenshot(name_desmume)
         bot_screen = screen.crop(bot_coords)
         if (check_for_battle(bot_screen, test_screen) > 0.85):
