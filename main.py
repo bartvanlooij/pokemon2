@@ -43,6 +43,7 @@ def print_evolution_order(df_current_pokemon):
 def print_moves(pokemon : str, moves : dict):
     print("\nMoves:")
     pokemon = pokemon[0] + pokemon[1:].lower()
+    pokemon = difflib.get_close_matches(pokemon, all_pokemon, 1, 0.4)[0]
     for x in moves[pokemon.strip()]:
         print(f"Lvl. {x[0]}: {x[1]}")
 
