@@ -11,6 +11,7 @@ import ast
 import json
 import difflib
 import numpy as np
+import keyboard
 def check_for_battle(bot : PIL.Image.Image, test_screen : PIL.Image.Image):
     bot, test_screen = make_images_same_size(test_screen, bot)
     bot = ImageOps.grayscale(bot)
@@ -76,6 +77,8 @@ def main():
     pokemon_name = "pickacu"
     print("Calibration done")
     while calibrated:
+        if keyboard.is_pressed("F7"):
+            sys.exit()
         try:
             screen = screenshot(name_desmume)
             focus = True
