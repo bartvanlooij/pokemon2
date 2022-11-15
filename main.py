@@ -80,6 +80,7 @@ def main():
             screen = screenshot(name_desmume)
             focus = True
         except:
+            time.sleep(0.5)
             if focus:
                 print("Screen out of focus")
                 focus = False
