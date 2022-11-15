@@ -78,9 +78,10 @@ def main():
             if pytesseract.image_to_string(box_image) != pokemon_name:
                 pokemon_name = pytesseract.image_to_string(box_image)
                 df_current_pokemon = get_pokemon_data(pokemon_name, df_pokemon)
-                print("\n---------------------------------------------\n")
-                for element in print_order:
-                    print(f"{element}: {df_current_pokemon.loc[element]}")
+                if df_current_pokemon:
+                    print("\n---------------------------------------------\n")
+                    for element in print_order:
+                        print(f"{element}: {df_current_pokemon.loc[element]}")
 
                 # print(print_evolution_order(df_current_pokemon))
 
