@@ -9,6 +9,7 @@ from print_pokemon_data import get_pokemon_data
 import pandas as pd
 import ast
 import json
+import difflib
 import numpy as np
 def check_for_battle(bot : PIL.Image.Image, test_screen : PIL.Image.Image):
     bot, test_screen = make_images_same_size(test_screen, bot)
