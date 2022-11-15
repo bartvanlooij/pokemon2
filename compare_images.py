@@ -23,7 +23,7 @@ from skimage.metrics import structural_similarity
 
 def similarity(im1, im2):
     """Calculates the root mean square error (RSME) between two images"""
-    return math.sqrt(structural_similarity(img_as_float(im1), img_as_float(im2)))
+    return math.sqrt(abs(structural_similarity(img_as_float(im1), img_as_float(im2))))
 
 def make_images_same_size(img1 : PIL.Image.Image, img2 : PIL.Image.Image):
     img2 = img2.resize((img1.width, img1.height))
