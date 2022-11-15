@@ -61,28 +61,35 @@ def main():
     pokemon_name = "pickacu"
     print("Calibration done")
     while calibrated:
-        screen = screenshot(name_desmume)
-        bot_screen = screen.crop(bot_coords)
-        if (check_for_battle(bot_screen, test_screen) > 0.85):
-            currently_in_battle = True
-        else:
-            currently_in_battle = False
+        try:
+            screen = screenshot(name_desmume)
+            focus = True
+        except:
+            if focus:
+                print("Screen out of focus")
+                focus = False
+        if focus:
+            bot_screen = screen.crop(bot_coords)
+            if (check_for_battle(bot_screen, test_screen) > 0.85):
+                currently_in_battle = True
+            else:
+                currently_in_battle = False
 
 
-        if currently_in_battle:
+            if currently_in_battle:
 
-            top_screen = screen.crop(top_coords)
-            box_image = top_screen.crop(box_coords)
-            box_image = ImageOps.grayscale(box_image)
-            if pytesseract.image_to_string(box_image) != pokemon_name:
-                pokemon_name = pytesseract.image_to_string(box_image)
-                df_current_pokemon = get_pokemon_data(pokemon_name, df_pokemon)
-                if df_current_pokemon is not None:
-                    print("\n---------------------------------------------\n")
-                    for element in print_order:
-                        print(f"{element}: {df_current_pokemon.loc[element]}")
+                top_screen = screen.crop(top_coords)
+                box_image = top_screen.crop(box_coords)
+                box_image = ImageOps.grayscale(box_image)
+                if pytesseract.image_to_string(box_image) != pokemon_name:
+                    pokemon_name = pytesseract.image_to_string(box_image)
+                    df_current_pokemon = get_pokemon_data(pokemon_name, df_pokemon)
+                    if df_current_pokemon is not None:
+                        print("\n---------------------------------------------\n")
+                        for element in print_order:
+                            print(f"{element}: {df_current_pokemon.loc[element]}")
 
-                # print(print_evolution_order(df_current_pokemon))
+                    # print(print_evolution_order(df_current_pokemon))
 
 
 
