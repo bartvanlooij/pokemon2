@@ -10,7 +10,6 @@ def calibration(calibration_img : PIL.Image.Image):
 
 
         pixel_color = calibration_img.getpixel((0, i))
-        print(pixel_color, i)
         if pixel_color == (240,240,240):
             top_bar_seen = True
         if top_bar_seen:
