@@ -10,6 +10,7 @@ import pandas as pd
 import ast
 import json
 import difflib
+import math
 import numpy as np
 import keyboard
 def check_for_battle(bot : PIL.Image.Image, test_screen : PIL.Image.Image):
@@ -55,26 +56,40 @@ def print_typing(df_current_pokemon : pd.DataFrame, df_typing : pd.DataFrame):
     type2 = df_current_pokemon.loc['Type 2']
     type_combinations = {}
     for i in df_typing.index:
-        type_combinations[i] = float(df_typing.loc[type1])
-        if type2:
-            type_combinations[i] = type_combinations[i] * float(df_typing.loc[type2])
-    string_weak = "2x damaged by:"
+        type_combinations[i] = float(df_typing.loc[i, type1])
+        if not math.isnan(type2):
+            print(type(type2))
+            type_combinations[i] = type_combinations[i] * float(df_typing.loc[i, type2])
+    string_weak = "2x damaged by: "
     string_resist = "1/2 damage: "
     string_immune = "Immune: "
     string_double_resist = "1/4x damaged by: "
     string_double_weak = "4x damaged by: "
     for key in type_combinations.keys():
-        if type_combinations[key] = 0:
+        if type_combinations[key] == 0:
             string_immune += key + ", "
-        if type_combinations[key] = 2:
+        if type_combinations[key] == 2:
             string_weak += key + ", "
-        if type_combinations[key] = 4:
+        if type_combinations[key] == 4:
             string_double_weak += key + ", "
-        if type_combinations[key] = 0.25:
+        if type_combinations[key] == 0.25:
             string_double_resist += key + ", "
-        if type_combinations[key] = 0.5:
+        if type_combinations[key] == 0.5:
             string_resist += key + ", "
-    print(string_)
+
+    print("\nType effectiveness: ")
+    if not string_double_weak.endswith(': '):
+        print(string_double_weak[:-2])
+    if not string_weak.endswith(': '):
+        print(string_weak[:-2])
+    if not string_resist.endswith(': '):
+        print(string_resist[:-2])
+    if not string_double_resist.endswith(': '):
+        print(string_double_resist[:-2])
+    if not string_immune.endswith(': '):
+        print(string_immune[:-2])
+
+
 
 
 def main():
@@ -133,7 +148,7 @@ def main():
                         print("\n---------------------------------------------\n")
                         for element in print_order:
                             print(f"{element}: {df_current_pokemon.loc[element]}")
-                        #print_typing(df_current_pokemon, df_typing)
+                        print_typing(df_current_pokemon, df_typing)
                         print_moves(pokemon_name, moves, df_pokemon)
                     # print(print_evolution_order(df_current_pokemon))
 
