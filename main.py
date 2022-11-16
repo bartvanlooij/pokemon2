@@ -61,7 +61,7 @@ def print_typing(df_current_pokemon : pd.DataFrame, df_typing : pd.DataFrame):
             print(type(type2))
             type_combinations[i] = type_combinations[i] * float(df_typing.loc[i, type2])
     string_weak = "2x damaged by: "
-    string_resist = "1/2 damage: "
+    string_resist = "1/2 damaged by: "
     string_immune = "Immune: "
     string_double_resist = "1/4x damaged by: "
     string_double_weak = "4x damaged by: "
