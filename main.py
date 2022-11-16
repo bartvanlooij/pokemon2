@@ -57,14 +57,15 @@ def print_typing(df_current_pokemon : pd.DataFrame, df_typing : pd.DataFrame):
     type_combinations = {}
     for i in df_typing.index:
         type_combinations[i] = float(df_typing.loc[i, type1])
-        if not math.isnan(type2):
-            print(type(type2))
+        if isinstance(type2, str):
+
             type_combinations[i] = type_combinations[i] * float(df_typing.loc[i, type2])
     string_weak = "2x damaged by: "
     string_resist = "1/2 damaged by: "
     string_immune = "Immune: "
     string_double_resist = "1/4x damaged by: "
     string_double_weak = "4x damaged by: "
+    print(type_combinations)
     for key in type_combinations.keys():
         if type_combinations[key] == 0:
             string_immune += key + ", "
