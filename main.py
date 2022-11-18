@@ -96,7 +96,7 @@ def print_typing(df_current_pokemon : pd.DataFrame, df_typing : pd.DataFrame):
 def main():
     with open("pokemon_moves.json") as filehandle:
         moves = json.load(filehandle)
-    df_typing = pd.read_csv("typing.csv", index_col=0)
+    df_typing = pd.read_csv("newtyping.csv", index_col=0)
     calibrated = False
     print_order = ["Name", "Type 1", "Type 2", "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed", "Total"]
     global df_pokemon
