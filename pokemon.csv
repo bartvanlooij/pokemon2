@@ -33,8 +33,8 @@
 32,Nidoran♂,Poison,,273.0,46.0,57.0,40.0,40.0,40.0,50.0,1.0,False,[]
 33,Nidorino,Poison,,365.0,61.0,72.0,57.0,55.0,55.0,65.0,1.0,False,"[['nidoking', 'use-item', 'moon-stone']]"
 34,Nidoking,Poison,Ground,505.0,81.0,102.0,77.0,85.0,75.0,85.0,1.0,False,[]
-35,Clefairy,Fairy,,323.0,70.0,45.0,48.0,60.0,65.0,35.0,1.0,False,"[['clefable', 'use-item', 'moon-stone']]"
-36,Clefable,Fairy,,483.0,95.0,70.0,73.0,95.0,90.0,60.0,1.0,False,[]
+35,Clefairy,Normal,,323.0,70.0,45.0,48.0,60.0,65.0,35.0,1.0,False,"[['clefable', 'use-item', 'moon-stone']]"
+36,Clefable,Normal,,483.0,95.0,70.0,73.0,95.0,90.0,60.0,1.0,False,[]
 37,Vulpix,Fire,,299.0,38.0,41.0,40.0,50.0,65.0,65.0,1.0,False,"[['ninetales', 'use-item', 'fire-stone']]"
 38,Ninetales,Fire,,505.0,73.0,76.0,75.0,81.0,100.0,100.0,1.0,False,[]
 39,Jigglypuff,Normal,Fairy,270.0,115.0,45.0,20.0,45.0,25.0,20.0,1.0,False,"[['wigglytuff', 'use-item', 'moon-stone']]"
@@ -171,10 +171,10 @@
 170,Chinchou,Water,Electric,330.0,75.0,38.0,38.0,56.0,56.0,67.0,2.0,False,"[['lanturn', 'level-up', 27]]"
 171,Lanturn,Water,Electric,460.0,125.0,58.0,58.0,76.0,76.0,67.0,2.0,False,[]
 172,Pichu,Electric,,205.0,20.0,40.0,15.0,35.0,35.0,60.0,2.0,False,"[['pikachu', 'level-up', None]]"
-173,Cleffa,Fairy,,218.0,50.0,25.0,28.0,45.0,55.0,15.0,2.0,False,"[['clefairy', 'level-up', None]]"
+173,Cleffa,Normal,,218.0,50.0,25.0,28.0,45.0,55.0,15.0,2.0,False,"[['clefairy', 'level-up', None]]"
 174,Igglybuff,Normal,Fairy,210.0,90.0,30.0,15.0,40.0,20.0,15.0,2.0,False,"[['jigglypuff', 'level-up', None]]"
-175,Togepi,Fairy,,245.0,35.0,20.0,65.0,40.0,65.0,20.0,2.0,False,"[['togetic', 'level-up', None]]"
-176,Togetic,Fairy,Flying,405.0,55.0,40.0,85.0,80.0,105.0,40.0,2.0,False,"[['togekiss', 'use-item', 'shiny-stone']]"
+175,Togepi,Normal,,245.0,35.0,20.0,65.0,40.0,65.0,20.0,2.0,False,"[['togetic', 'level-up', None]]"
+176,Togetic,Normal,Flying,405.0,55.0,40.0,85.0,80.0,105.0,40.0,2.0,False,"[['togekiss', 'use-item', 'shiny-stone']]"
 177,Natu,Psychic,Flying,320.0,40.0,50.0,45.0,70.0,45.0,70.0,2.0,False,"[['xatu', 'level-up', 25]]"
 178,Xatu,Psychic,Flying,470.0,65.0,75.0,70.0,95.0,70.0,95.0,2.0,False,[]
 179,Mareep,Electric,,280.0,55.0,40.0,40.0,65.0,45.0,35.0,2.0,False,"[['flaaffy', 'level-up', 15]]"
@@ -207,8 +207,8 @@
 206,Dunsparce,Normal,,415.0,100.0,70.0,70.0,65.0,65.0,45.0,2.0,False,[]
 207,Gligar,Ground,Flying,430.0,65.0,75.0,105.0,35.0,65.0,85.0,2.0,False,"[['gliscor', 'level-up', None]]"
 208,Steelix,Steel,Ground,510.0,75.0,85.0,200.0,55.0,65.0,30.0,2.0,False,[]
-209,Snubbull,Fairy,,300.0,60.0,80.0,50.0,40.0,40.0,30.0,2.0,False,"[['granbull', 'level-up', 23]]"
-210,Granbull,Fairy,,450.0,90.0,120.0,75.0,60.0,60.0,45.0,2.0,False,[]
+209,Snubbull,Normal,,300.0,60.0,80.0,50.0,40.0,40.0,30.0,2.0,False,"[['granbull', 'level-up', 23]]"
+210,Granbull,Normal,,450.0,90.0,120.0,75.0,60.0,60.0,45.0,2.0,False,[]
 211,Qwilfish,Water,Poison,430.0,65.0,95.0,75.0,55.0,55.0,85.0,2.0,False,[]
 212,Scizor,Bug,Steel,500.0,70.0,130.0,100.0,55.0,80.0,65.0,2.0,False,[]
 213,Shuckle,Bug,Rock,505.0,20.0,10.0,230.0,10.0,230.0,5.0,2.0,False,[]
@@ -466,7 +466,7 @@
 465,Tangrowth,Grass,,535.0,100.0,100.0,125.0,110.0,50.0,50.0,4.0,False,[]
 466,Electivire,Electric,,540.0,75.0,123.0,67.0,95.0,85.0,95.0,4.0,False,[]
 467,Magmortar,Fire,,540.0,75.0,95.0,67.0,125.0,95.0,83.0,4.0,False,[]
-468,Togekiss,Fairy,Flying,545.0,85.0,50.0,95.0,120.0,115.0,80.0,4.0,False,[]
+468,Togekiss,Normal,Flying,545.0,85.0,50.0,95.0,120.0,115.0,80.0,4.0,False,[]
 469,Yanmega,Bug,Flying,515.0,86.0,76.0,86.0,116.0,56.0,95.0,4.0,False,[]
 470,Leafeon,Grass,,525.0,65.0,110.0,130.0,60.0,65.0,95.0,4.0,False,[]
 471,Glaceon,Ice,,525.0,65.0,60.0,110.0,130.0,95.0,65.0,4.0,False,[]
