@@ -83,15 +83,7 @@ def startup():
     return window
 
 
-app = Dash(__name__, external_stylesheets=[
-    'https://codepen.io/chriddyp/pen/bWLwgP.css',
-    {
-        'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
-        'rel': 'stylesheet',
-        'integrity': 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO',
-        'crossorigin': 'anonymous'
-    }
-])
+app = Dash(__name__, external_stylesheets=['stylesheet.css'])
 
 app.layout = html.Div([
     html.H2(id='calibration_instruction',
@@ -101,14 +93,15 @@ app.layout = html.Div([
     dcc.Store(id='window'),
     html.Div(children=[
         html.Div(children=[
-            dcc.Graph(id='polarplot')], style={'padding': 10, 'flex': 1}), html.H1(id='test'),
+            dcc.Graph(id='polarplot', style={'font_size': '15px'})], style={'padding': 10, 'flex': 1}),
         html.Div(children=[
-            dash_table.DataTable(id='moves_table', style_data={
+            dash_table.DataTable(id='moves_table', style_cell={'font_size': '15px'}, style_data={
                 'whiteSpace': 'normal',
                 'height': 'auto',
             })
         ], style={'padding': 10, 'flex': 1})], style={'display': 'flex', 'flex-direction': 'row'}),
-    dcc.Interval(id='interval-component', n_intervals=0)
+    dcc.Interval(id='interval-component', n_intervals=0),
+    html.Div(id='move_text')
 ])
 
 
