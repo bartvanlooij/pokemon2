@@ -1,28 +1,34 @@
 import time
+import difflib
 import pandas as pd
+import numpy
 import json
 import ast
 import pygetwindow as gw
 from PIL import Image, ImageOps
-import PIL.Image
 from calibration import calibration, find_name_box
 from main import check_for_battle, print_moves, print_typing
 from compare_images import *
 from battle_detection import *
 import pytesseract
 from print_pokemon_data import get_pokemon_data
-from dash import Dash, dcc, html, Input, Output, State
+from dash import Dash, dcc, html, Input, Output, State, dash_table
 from io import BytesIO
 import base64
+import plotly.graph_objects as go
+import itertools
 
 df_pokemon = pd.read_csv('pokemon.csv')
 df_pokemon['evolution'] = df_pokemon['evolution'].apply(ast.literal_eval)
 df_typing = pd.read_csv('newtyping.csv', index_col=0)
-with open("pokemon_moves.json") as filehandle:
+with open("pokemon_moves.json", 'r') as filehandle:
     moves = json.load(filehandle)
 
 battle_format = Image.open("test_fotos/battle_format.png")
+battle_format = ImageOps.grayscale(battle_format)
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
+print_order = ["Name", "Type 1", "Type 2", "HP", "Attack",
+               "Defense", "Sp. Atk", "Sp. Def", "Speed", "Total"]
 
 
 class Window():
@@ -32,7 +38,6 @@ class Window():
         self.top_coords = top_coords
         self.bot_coords = bot_coords
         self.box_coords = box_coords
-        self.battle_format = Image.open("test_fotos/battle_format.png")
         self.pokemon_name = " "
         self.print_order = ["Name", "Type 1", "Type 2", "HP", "Attack",
                             "Defense", "Sp. Atk", "Sp. Def", "Speed", "Total"]
@@ -78,13 +83,32 @@ def startup():
     return window
 
 
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[
+    'https://codepen.io/chriddyp/pen/bWLwgP.css',
+    {
+        'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+        'rel': 'stylesheet',
+        'integrity': 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO',
+        'crossorigin': 'anonymous'
+    }
+])
 
 app.layout = html.Div([
     html.H2(id='calibration_instruction',
             children='Press button to calibrate'),
     html.Button('Calibrate', id='calibration_button', n_clicks=0),
-    dcc.Store(id='window')
+    html.H1(id='current_pokemon', children='no pokemon'),
+    dcc.Store(id='window'),
+    html.Div(children=[
+        html.Div(children=[
+            dcc.Graph(id='polarplot')], style={'padding': 10, 'flex': 1}), html.H1(id='test'),
+        html.Div(children=[
+            dash_table.DataTable(id='moves_table', style_data={
+                'whiteSpace': 'normal',
+                'height': 'auto',
+            })
+        ], style={'padding': 10, 'flex': 1})], style={'display': 'flex', 'flex-direction': 'row'}),
+    dcc.Interval(id='interval-component', n_intervals=0)
 ])
 
 
@@ -96,10 +120,68 @@ app.layout = html.Div([
 )
 def calibration_button_click(n):
     window = startup()
+
     return "Calibration done", vars(window)
 
 
+@app.callback(
+    Output('polarplot', 'figure'),
+    Output('moves_table', 'data'),
+    Output('moves_table', 'columns'),
+    Input('current_pokemon', 'children'),
+    prevent_initial_call=True
+)
+def update_polar_plot(current_pokemon):
+    df_current_pokemon = df_pokemon[df_pokemon['Name']
+                                    == current_pokemon].index[0]
+    df_current_pokemon = df_pokemon.loc[df_current_pokemon]
+    graph_labels = ["HP", "Attack",
+                    "Defense", "Sp. Atk", "Sp. Def", "Speed"]
+    lijst = df_current_pokemon[graph_labels].T.values
+    lijst = [int(x) for x in lijst]
+
+    lijst_labels = [f'{graph_labels[x]}: {lijst[x]}' for x in range(6)]
+    figure = go.Figure(go.Scatterpolar(
+        name=f"{current_pokemon} stats", r=lijst, theta=lijst_labels))
+    figure.update_traces(fill='toself')
+
+    data = moves[current_pokemon]
+    columns = [{'name': 'Lvl.', 'id': 0}, {'name': 'Move', 'id': 1}]
+    return figure, data, columns
+
+
+@app.callback(
+    Output('current_pokemon', 'children'),
+    Input('interval-component', 'n_intervals'),
+    State('calibration_instruction', 'children'),
+    State('current_pokemon', 'children'),
+    State('window', 'data'),
+    prevent_initial_call=True
+)
+def check_pokemon_name(interval, calibration_state, current_pokemon, window):
+    if calibration_state == "Calibration done":
+        if bool(window):
+            try:
+                screen = screenshot(window['window_name'])
+            except:
+                return current_pokemon
+            bot_screen = screen.crop(tuple(window['bot_coords']))
+
+            if check_for_battle(bot_screen, battle_format) > 0.85:
+                top_screen = screen.crop(tuple(window['top_coords']))
+                box_image = top_screen.crop(tuple(window['box_coords']))
+                box_image = ImageOps.grayscale(box_image)
+                if pytesseract.image_to_string(box_image) != current_pokemon:
+
+                    current_pokemon = pytesseract.image_to_string(box_image)
+                    current_pokemon = current_pokemon[0].upper() + \
+                        current_pokemon[1:].lower()
+                    all_pokemon = df_pokemon["Name"].tolist()[:-1]
+                    current_pokemon = difflib.get_close_matches(
+                        current_pokemon, all_pokemon, 1, 0.4)[0]
+                return current_pokemon
+
+
 if __name__ == "__main__":
-    window = startup()
-    print(vars(window))
-    app.run_server(debug=True)
+
+    app.run_server(debug=False)
