@@ -17,6 +17,9 @@ from io import BytesIO
 import base64
 import plotly.graph_objects as go
 import itertools
+import dash_gif_component as gif
+import base64
+
 
 df_pokemon = pd.read_csv('pokemon.csv')
 df_pokemon['evolution'] = df_pokemon['evolution'].apply(ast.literal_eval)
@@ -90,6 +93,7 @@ app.layout = html.Div([
             children='Press button to calibrate'),
     html.Button('Calibrate', id='calibration_button', n_clicks=0),
     html.H1(id='current_pokemon', children='no pokemon'),
+    html.Img(id='image'),
     dcc.Store(id='window'),
     html.Div(children=[
         html.Div(children=[
@@ -101,7 +105,10 @@ app.layout = html.Div([
             })
         ], style={'padding': 10, 'flex': 1})], style={'display': 'flex', 'flex-direction': 'row'}),
     dcc.Interval(id='interval-component', n_intervals=0),
+    html.Div(id='gif', style={'width': '100px',
+             'height': '100px', 'padding': '100px'}),
     html.Div(id='move_text')
+
 ])
 
 
@@ -121,6 +128,7 @@ def calibration_button_click(n):
     Output('polarplot', 'figure'),
     Output('moves_table', 'data'),
     Output('moves_table', 'columns'),
+    Output('image', 'src'),
     Input('current_pokemon', 'children'),
     prevent_initial_call=True
 )
@@ -140,7 +148,11 @@ def update_polar_plot(current_pokemon):
 
     data = moves[current_pokemon]
     columns = [{'name': 'Lvl.', 'id': 0}, {'name': 'Move', 'id': 1}]
-    return figure, data, columns
+    image_filename = f'{current_pokemon}.png'
+    encoded_image = app.get_asset_url(image_filename)
+    # return_gif = gif.GifPlayer(gif=f'gifs/{current_pokemon}.gif', still=f'sprites/{current_pokemon}.png', autoplay=True
+    #                            )
+    return figure, data, columns, encoded_image
 
 
 @app.callback(
