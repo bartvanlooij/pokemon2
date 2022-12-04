@@ -1,3 +1,4 @@
+# TODO volgorde stats polar plots, moves description and type matchup symbols,dark mode
 import time
 import difflib
 from tkinter.ttk import Style
@@ -87,7 +88,7 @@ def startup():
     return window
 
 
-app = Dash(__name__, external_stylesheets=['stylesheet.css'])
+app = Dash(__name__)
 
 app.layout = html.Div([
     html.H2(id='calibration_instruction',
