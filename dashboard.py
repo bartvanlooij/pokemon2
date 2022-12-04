@@ -184,7 +184,7 @@ def check_pokemon_name(interval, calibration_state, current_pokemon, window):
                     all_pokemon = df_pokemon["Name"].tolist()[:-1]
                     current_pokemon = difflib.get_close_matches(
                         current_pokemon, all_pokemon, 1, 0.4)[0]
-                return current_pokemon
+        return current_pokemon
 
 
 if __name__ == "__main__":
