@@ -1,5 +1,6 @@
 import time
 import difflib
+from tkinter.ttk import Style
 import pandas as pd
 import numpy
 import json
@@ -93,15 +94,19 @@ app.layout = html.Div([
             children='Press button to calibrate'),
     html.Button('Calibrate', id='calibration_button', n_clicks=0),
     html.H1(id='current_pokemon', children='no pokemon'),
-    html.Img(id='image'),
+    html.Div(children=[
+        html.Div(children=[
+            html.Img(id='image')], style={'padding': 10, 'flex': 1}),
+        html.Div([
+            html.H1("Type effectiveness:"),
+            html.H2(id='type-effect')
+        ], style={'padding': 10, 'flex': 1})], style={'display': 'flex', 'flex-direction': 'row'}),
     dcc.Store(id='window'),
     html.Div(children=[
         html.Div(children=[
             html.H2(id='type'),
             dcc.Graph(id='polarplot', style={'font_size': '15px'})], style={'padding': 10, 'flex': 1}),
         html.Div(children=[
-            html.H1("Type effectiveness:"),
-            html.H2(id='type-effect'),
             dash_table.DataTable(id='moves_table', style_cell={'font_size': '15px'}, style_data={
                 'whiteSpace': 'normal',
                 'height': 'auto',
