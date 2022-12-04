@@ -100,12 +100,13 @@ app.layout = html.Div([
             html.H2(id='type'),
             dcc.Graph(id='polarplot', style={'font_size': '15px'})], style={'padding': 10, 'flex': 1}),
         html.Div(children=[
+            html.Div("Type effectiveness:"),
+            html.H2(id='type-effect'),
             dash_table.DataTable(id='moves_table', style_cell={'font_size': '15px'}, style_data={
                 'whiteSpace': 'normal',
                 'height': 'auto',
             }),
-            html.Div("Type effectiveness:"),
-            html.Div(id='type-effect')
+
         ], style={'padding': 10, 'flex': 1})], style={'display': 'flex', 'flex-direction': 'row'}),
     dcc.Interval(id='interval-component', n_intervals=0),
     html.Div(id='gif', style={'width': '100px',
