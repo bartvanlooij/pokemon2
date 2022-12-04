@@ -97,6 +97,7 @@ app.layout = html.Div([
     dcc.Store(id='window'),
     html.Div(children=[
         html.Div(children=[
+            html.H2(id='type'),
             dcc.Graph(id='polarplot', style={'font_size': '15px'})], style={'padding': 10, 'flex': 1}),
         html.Div(children=[
             dash_table.DataTable(id='moves_table', style_cell={'font_size': '15px'}, style_data={
@@ -129,6 +130,7 @@ def calibration_button_click(n):
     Output('moves_table', 'data'),
     Output('moves_table', 'columns'),
     Output('image', 'src'),
+    Output('type', 'children'),
     Input('current_pokemon', 'children'),
     prevent_initial_call=True
 )
@@ -136,6 +138,10 @@ def update_polar_plot(current_pokemon):
     df_current_pokemon = df_pokemon[df_pokemon['Name']
                                     == current_pokemon].index[0]
     df_current_pokemon = df_pokemon.loc[df_current_pokemon]
+    type1 = df_current_pokemon.loc['Type 1']
+    type2 = df_current_pokemon.loc['Type 2']
+    if isinstance(type2, str):
+        type1 = f'{type1} + {type2}'
     graph_labels = ["HP", "Attack",
                     "Defense", "Sp. Atk", "Sp. Def", "Speed"]
     lijst = df_current_pokemon[graph_labels].T.values
@@ -152,7 +158,7 @@ def update_polar_plot(current_pokemon):
     encoded_image = app.get_asset_url(image_filename)
     # return_gif = gif.GifPlayer(gif=f'gifs/{current_pokemon}.gif', still=f'sprites/{current_pokemon}.png', autoplay=True
     #                            )
-    return figure, data, columns, encoded_image
+    return figure, data, columns, encoded_image, type1
 
 
 @app.callback(
