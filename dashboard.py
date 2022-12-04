@@ -103,7 +103,9 @@ app.layout = html.Div([
             dash_table.DataTable(id='moves_table', style_cell={'font_size': '15px'}, style_data={
                 'whiteSpace': 'normal',
                 'height': 'auto',
-            })
+            }),
+            html.Div("Type effectiveness:"),
+            html.Div(id='type-effect')
         ], style={'padding': 10, 'flex': 1})], style={'display': 'flex', 'flex-direction': 'row'}),
     dcc.Interval(id='interval-component', n_intervals=0),
     html.Div(id='gif', style={'width': '100px',
@@ -131,6 +133,7 @@ def calibration_button_click(n):
     Output('moves_table', 'columns'),
     Output('image', 'src'),
     Output('type', 'children'),
+    Output('type-effect', 'children'),
     Input('current_pokemon', 'children'),
     prevent_initial_call=True
 )
@@ -141,7 +144,9 @@ def update_polar_plot(current_pokemon):
     type1 = df_current_pokemon.loc['Type 1']
     type2 = df_current_pokemon.loc['Type 2']
     if isinstance(type2, str):
-        type1 = f'{type1} + {type2}'
+        type3 = f'{type1} + {type2}'
+    else:
+        type3 = type1
     graph_labels = ["HP", "Attack",
                     "Defense", "Sp. Atk", "Sp. Def", "Speed"]
     lijst = df_current_pokemon[graph_labels].T.values
@@ -156,9 +161,44 @@ def update_polar_plot(current_pokemon):
     columns = [{'name': 'Lvl.', 'id': 0}, {'name': 'Move', 'id': 1}]
     image_filename = f'{current_pokemon}.png'
     encoded_image = app.get_asset_url(image_filename)
+    type_combinations = {}
+    for i in df_typing.index:
+        type_combinations[i] = float(df_typing.loc[i, type1])
+        if isinstance(type2, str):
+
+            type_combinations[i] = type_combinations[i] * \
+                float(df_typing.loc[i, type2])
+    string_weak = "2x damaged by: "
+    string_resist = "1/2 damaged by: "
+    string_immune = "Immune: "
+    string_double_resist = "1/4x damaged by: "
+    string_double_weak = "4x damaged by: "
+    for key in type_combinations.keys():
+        if type_combinations[key] == 0:
+            string_immune += key + ", "
+        if type_combinations[key] == 2:
+            string_weak += key + ", "
+        if type_combinations[key] == 4:
+            string_double_weak += key + ", "
+        if type_combinations[key] == 0.25:
+            string_double_resist += key + ", "
+        if type_combinations[key] == 0.5:
+            string_resist += key + ", "
+
+    type_effect = ""
+    if not string_double_weak.endswith(': '):
+        type_effect += f'\n{string_double_weak[:-2]}'
+    if not string_weak.endswith(': '):
+        type_effect += f'\n{string_weak[:-2]}'
+    if not string_resist.endswith(': '):
+        type_effect += f'\n{string_resist[:-2]}'
+    if not string_double_resist.endswith(': '):
+        type_effect += f'\n{string_double_resist[:-2]}'
+    if not string_immune.endswith(': '):
+        type_effect += f'\n{string_immune[:-2]}'
     # return_gif = gif.GifPlayer(gif=f'gifs/{current_pokemon}.gif', still=f'sprites/{current_pokemon}.png', autoplay=True
     #                            )
-    return figure, data, columns, encoded_image, type1
+    return figure, data, columns, encoded_image, type3, type_effect
 
 
 @app.callback(

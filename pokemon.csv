@@ -37,8 +37,8 @@
 36,Clefable,Normal,,483.0,95.0,70.0,73.0,95.0,90.0,60.0,1.0,False,[]
 37,Vulpix,Fire,,299.0,38.0,41.0,40.0,50.0,65.0,65.0,1.0,False,"[['ninetales', 'use-item', 'fire-stone']]"
 38,Ninetales,Fire,,505.0,73.0,76.0,75.0,81.0,100.0,100.0,1.0,False,[]
-39,Jigglypuff,Normal,Fairy,270.0,115.0,45.0,20.0,45.0,25.0,20.0,1.0,False,"[['wigglytuff', 'use-item', 'moon-stone']]"
-40,Wigglytuff,Normal,Fairy,435.0,140.0,70.0,45.0,85.0,50.0,45.0,1.0,False,[]
+39,Jigglypuff,Normal,,270.0,115.0,45.0,20.0,45.0,25.0,20.0,1.0,False,"[['wigglytuff', 'use-item', 'moon-stone']]"
+40,Wigglytuff,Normal,,435.0,140.0,70.0,45.0,85.0,50.0,45.0,1.0,False,[]
 41,Zubat,Poison,Flying,245.0,40.0,45.0,35.0,30.0,40.0,55.0,1.0,False,"[['golbat', 'level-up', 22]]"
 42,Golbat,Poison,Flying,455.0,75.0,80.0,70.0,65.0,75.0,90.0,1.0,False,"[['crobat', 'level-up', None]]"
 43,Oddish,Grass,Poison,320.0,45.0,50.0,55.0,75.0,65.0,30.0,1.0,False,"[['gloom', 'level-up', 21]]"
@@ -79,8 +79,8 @@
 78,Rapidash,Fire,,500.0,65.0,100.0,70.0,80.0,80.0,105.0,1.0,False,[]
 79,Slowpoke,Water,Psychic,315.0,90.0,65.0,65.0,40.0,40.0,15.0,1.0,False,"[['slowbro', 'level-up', 37], ['slowking', 'trade']]"
 80,Slowbro,Water,Psychic,490.0,95.0,75.0,110.0,100.0,80.0,30.0,1.0,False,[]
-81,Magnemite,Electric,Steel,325.0,25.0,35.0,70.0,95.0,55.0,45.0,1.0,False,"[['magneton', 'level-up', 30]]"
-82,Magneton,Electric,Steel,465.0,50.0,60.0,95.0,120.0,70.0,70.0,1.0,False,"[['magnezone', 'level-up', None]]"
+81,Magnemite,Electric,,325.0,25.0,35.0,70.0,95.0,55.0,45.0,1.0,False,"[['magneton', 'level-up', 30]]"
+82,Magneton,Electric,,465.0,50.0,60.0,95.0,120.0,70.0,70.0,1.0,False,"[['magnezone', 'level-up', None]]"
 83,Farfetch'd,Normal,Flying,352.0,52.0,65.0,55.0,58.0,62.0,60.0,1.0,False,[]
 84,Doduo,Normal,Flying,310.0,35.0,85.0,45.0,35.0,35.0,75.0,1.0,False,"[['dodrio', 'level-up', 31]]"
 85,Dodrio,Normal,Flying,460.0,60.0,110.0,70.0,60.0,60.0,100.0,1.0,False,[]
@@ -172,7 +172,7 @@
 171,Lanturn,Water,Electric,460.0,125.0,58.0,58.0,76.0,76.0,67.0,2.0,False,[]
 172,Pichu,Electric,,205.0,20.0,40.0,15.0,35.0,35.0,60.0,2.0,False,"[['pikachu', 'level-up', None]]"
 173,Cleffa,Normal,,218.0,50.0,25.0,28.0,45.0,55.0,15.0,2.0,False,"[['clefairy', 'level-up', None]]"
-174,Igglybuff,Normal,Fairy,210.0,90.0,30.0,15.0,40.0,20.0,15.0,2.0,False,"[['jigglypuff', 'level-up', None]]"
+174,Igglybuff,Normal,,210.0,90.0,30.0,15.0,40.0,20.0,15.0,2.0,False,"[['jigglypuff', 'level-up', None]]"
 175,Togepi,Normal,,245.0,35.0,20.0,65.0,40.0,65.0,20.0,2.0,False,"[['togetic', 'level-up', None]]"
 176,Togetic,Normal,Flying,405.0,55.0,40.0,85.0,80.0,105.0,40.0,2.0,False,"[['togekiss', 'use-item', 'shiny-stone']]"
 177,Natu,Psychic,Flying,320.0,40.0,50.0,45.0,70.0,45.0,70.0,2.0,False,"[['xatu', 'level-up', 25]]"
@@ -181,8 +181,8 @@
 180,Flaaffy,Electric,,365.0,70.0,55.0,55.0,80.0,60.0,45.0,2.0,False,"[['ampharos', 'level-up', 30]]"
 181,Ampharos,Electric,,510.0,90.0,75.0,85.0,115.0,90.0,55.0,2.0,False,[]
 182,Bellossom,Grass,,490.0,75.0,80.0,95.0,90.0,100.0,50.0,2.0,False,[]
-183,Marill,Water,Fairy,250.0,70.0,20.0,50.0,20.0,50.0,40.0,2.0,False,"[['azumarill', 'level-up', 18]]"
-184,Azumarill,Water,Fairy,420.0,100.0,50.0,80.0,60.0,80.0,50.0,2.0,False,[]
+183,Marill,Water,,250.0,70.0,20.0,50.0,20.0,50.0,40.0,2.0,False,"[['azumarill', 'level-up', 18]]"
+184,Azumarill,Water,,420.0,100.0,50.0,80.0,60.0,80.0,50.0,2.0,False,[]
 185,Sudowoodo,Rock,,410.0,70.0,100.0,115.0,30.0,65.0,30.0,2.0,False,[]
 186,Politoed,Water,,500.0,90.0,75.0,75.0,90.0,100.0,70.0,2.0,False,[]
 187,Hoppip,Grass,Flying,250.0,35.0,35.0,40.0,35.0,55.0,50.0,2.0,False,"[['skiploom', 'level-up', 18]]"
@@ -278,9 +278,9 @@
 277,Swellow,Normal,Flying,430.0,60.0,85.0,60.0,50.0,50.0,125.0,3.0,False,[]
 278,Wingull,Water,Flying,270.0,40.0,30.0,30.0,55.0,30.0,85.0,3.0,False,"[['pelipper', 'level-up', 25]]"
 279,Pelipper,Water,Flying,430.0,60.0,50.0,100.0,85.0,70.0,65.0,3.0,False,[]
-280,Ralts,Psychic,Fairy,198.0,28.0,25.0,25.0,45.0,35.0,40.0,3.0,False,"[['kirlia', 'level-up', 20]]"
-281,Kirlia,Psychic,Fairy,278.0,38.0,35.0,35.0,65.0,55.0,50.0,3.0,False,"[['gardevoir', 'level-up', 30], ['gallade', 'use-item', 'dawn-stone']]"
-282,Gardevoir,Psychic,Fairy,518.0,68.0,65.0,65.0,125.0,115.0,80.0,3.0,False,[]
+280,Ralts,Psychic,,198.0,28.0,25.0,25.0,45.0,35.0,40.0,3.0,False,"[['kirlia', 'level-up', 20]]"
+281,Kirlia,Psychic,,278.0,38.0,35.0,35.0,65.0,55.0,50.0,3.0,False,"[['gardevoir', 'level-up', 30], ['gallade', 'use-item', 'dawn-stone']]"
+282,Gardevoir,Psychic,,518.0,68.0,65.0,65.0,125.0,115.0,80.0,3.0,False,[]
 283,Surskit,Bug,Water,269.0,40.0,30.0,32.0,50.0,52.0,65.0,3.0,False,"[['masquerain', 'level-up', 22]]"
 284,Masquerain,Bug,Flying,414.0,70.0,60.0,62.0,80.0,82.0,60.0,3.0,False,[]
 285,Shroomish,Grass,,295.0,60.0,40.0,60.0,40.0,60.0,35.0,3.0,False,"[['breloom', 'level-up', 23]]"
@@ -296,12 +296,12 @@
 295,Exploud,Normal,,490.0,104.0,91.0,63.0,91.0,73.0,68.0,3.0,False,[]
 296,Makuhita,Fighting,,237.0,72.0,60.0,30.0,20.0,30.0,25.0,3.0,False,"[['hariyama', 'level-up', 24]]"
 297,Hariyama,Fighting,,474.0,144.0,120.0,60.0,40.0,60.0,50.0,3.0,False,[]
-298,Azurill,Normal,Fairy,190.0,50.0,20.0,40.0,20.0,40.0,20.0,3.0,False,"[['marill', 'level-up', None]]"
+298,Azurill,Normal,,190.0,50.0,20.0,40.0,20.0,40.0,20.0,3.0,False,"[['marill', 'level-up', None]]"
 299,Nosepass,Rock,,375.0,30.0,45.0,135.0,45.0,90.0,30.0,3.0,False,"[['probopass', 'level-up', None]]"
 300,Skitty,Normal,,260.0,50.0,45.0,45.0,35.0,35.0,50.0,3.0,False,"[['delcatty', 'use-item', 'moon-stone']]"
 301,Delcatty,Normal,,380.0,70.0,65.0,65.0,55.0,55.0,70.0,3.0,False,[]
 302,Sableye,Dark,Ghost,380.0,50.0,75.0,75.0,65.0,65.0,50.0,3.0,False,[]
-303,Mawile,Steel,Fairy,380.0,50.0,85.0,85.0,55.0,55.0,50.0,3.0,False,[]
+303,Mawile,Steel,,380.0,50.0,85.0,85.0,55.0,55.0,50.0,3.0,False,[]
 304,Aron,Steel,Rock,330.0,50.0,70.0,100.0,40.0,40.0,30.0,3.0,False,"[['lairon', 'level-up', 32]]"
 305,Lairon,Steel,Rock,430.0,60.0,90.0,140.0,50.0,50.0,40.0,3.0,False,"[['aggron', 'level-up', 42]]"
 306,Aggron,Steel,Rock,530.0,70.0,110.0,180.0,60.0,60.0,50.0,3.0,False,[]
@@ -544,8 +544,8 @@
 543,Venipede,Bug,Poison,260.0,30.0,45.0,59.0,30.0,39.0,57.0,5.0,False,"[['whirlipede', 'level-up', 22]]"
 544,Whirlipede,Bug,Poison,360.0,40.0,55.0,99.0,40.0,79.0,47.0,5.0,False,"[['scolipede', 'level-up', 30]]"
 545,Scolipede,Bug,Poison,485.0,60.0,100.0,89.0,55.0,69.0,112.0,5.0,False,[]
-546,Cottonee,Grass,Fairy,280.0,40.0,27.0,60.0,37.0,50.0,66.0,5.0,False,"[['whimsicott', 'use-item', 'sun-stone']]"
-547,Whimsicott,Grass,Fairy,480.0,60.0,67.0,85.0,77.0,75.0,116.0,5.0,False,[]
+546,Cottonee,Grass,,280.0,40.0,27.0,60.0,37.0,50.0,66.0,5.0,False,"[['whimsicott', 'use-item', 'sun-stone']]"
+547,Whimsicott,Grass,,480.0,60.0,67.0,85.0,77.0,75.0,116.0,5.0,False,[]
 548,Petilil,Grass,,280.0,45.0,35.0,50.0,70.0,50.0,30.0,5.0,False,"[['lilligant', 'use-item', 'sun-stone']]"
 549,Lilligant,Grass,,480.0,70.0,60.0,75.0,110.0,75.0,90.0,5.0,False,[]
 550,Basculin,Water,,460.0,70.0,92.0,65.0,80.0,55.0,98.0,5.0,False,[]
